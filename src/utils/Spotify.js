@@ -1,10 +1,8 @@
 import { clientId as id } from "../config";
 const clientId = id;
-const redirectUri = "https://unleash-dev.surge.sh";
+const redirectUri = "http://localhost:3002/";
 
 let accessToken;
-
-// var url = 'https://accounts.spotify.com/authorize';
 
 const Spotify = {
   getAccessToken() {
@@ -122,4 +120,5 @@ const Spotify = {
   },
 };
 
+console.log(Spotify.getAccessToken());
 export default Spotify;
