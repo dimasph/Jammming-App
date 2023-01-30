@@ -6,7 +6,6 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <div className="SearchResults">
@@ -16,7 +15,5 @@ class SearchResults extends Component {
     );
   }
 }
-
-console.log(this.props.SearchResults);
 
 export default SearchResults;

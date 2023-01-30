@@ -1,6 +1,6 @@
 import { clientId as id } from "../config";
 const clientId = id;
-const redirectUri = "http://localhost:3002/";
+const redirectUri = "http://localhost:3000/";
 
 let accessToken;
 
@@ -85,18 +85,18 @@ const Spotify = {
     //Bearer authentication is a type of authetication where the client send and access token to the server , and the server grants access if the token is valid:
 
     const headers = { Authorization: `Bearer ${accessToken}` };
-    let userID;
-    //Request that returns userID:
-    return fetch(`https://api.spotify.com/v1/${clientId}`, {
+    let userId;
+    //Request that returns userId:
+    return fetch(`https://api.spotify.com/v1/me`, {
       headers: headers,
     })
       .then((response) => {
         return response.json();
       })
       .then((jsonResponse) => {
-        userID = jsonResponse.id;
-        //Return userID to make a POST request that creates new playlist in the user's account:
-        return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+        userId = jsonResponse.id;
+        //Return userId to make a POST request that creates new playlist in the user's account:
+        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
           headers: headers,
           method: "POST",
           body: JSON.stringify({ name: name }),
@@ -108,7 +108,7 @@ const Spotify = {
             let playlistID = jsonResponse.id;
             //Add array of songs to playlist:
             return fetch(
-              `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`,
+              `https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`,
               {
                 headers: headers,
                 method: "POST",
